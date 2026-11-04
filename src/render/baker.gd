@@ -148,7 +148,7 @@ func bake() -> Dictionary:
 			error = "Das Atlas-Raster überschreitet die unterstützten Größen. Bitte den Export aufteilen."
 			break
 		for part in config.parts:
-			var sheet := {"part_id": part.id, "animation_id": animation.id, "pages": [], "frames": layout.frames}
+			var sheet := {"part_id": part.id, "animation_id": animation.id, "pages": [], "frames": layout.frames.duplicate(true)}
 			for page_index in layout.pages.size():
 				var size: Array = layout.pages[page_index].size
 				var images := _empty_page(Vector2i(size[0], size[1]))
@@ -172,6 +172,10 @@ func bake() -> Dictionary:
 						break
 				if not error.is_empty():
 					break
+				var page_frames: Array = sheet.frames.filter(func(entry: Dictionary) -> bool: return entry.page == page_index)
+				var packed: Dictionary = preload("res://src/export/compact_page.gd").pack(images, page_frames, manifest.profile.export_size, int(config.profile.max_page_size))
+				images = packed.images
+				size = packed.size
 				var paths: Dictionary = writer.write_page(part, animation, page_index, images[0], images[1], images[2])
 				if paths.is_empty():
 					error = writer.error
@@ -217,7 +221,7 @@ func _manifest() -> Dictionary:
 	for part in config.parts:
 		parts.append({"id": part.id, "slot": part.slot, "variant": part.variant,
 			"priority": part.priority, "regions": part.regions})
-	return {"schema_version": 1, "asset_id": config.asset_id, "asset_type": config.asset_type,
+	return {"schema_version": 2, "asset_id": config.asset_id, "asset_type": config.asset_type,
 		"profile": profile, "depth": {"encoding": "rgb24-be", "near": profile.near,
 			"far": profile.far, "near_is_small": true, "tie_break": "higher_priority_then_part_id"},
 		"animations": animations, "parts": parts, "sheets": []}

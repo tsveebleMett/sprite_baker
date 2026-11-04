@@ -18,8 +18,8 @@ def deliver(source: Path, destination: Path, outfits: Path | None = None,
     if manifest_path.stat().st_size > 16 * 1024 * 1024:
         raise ValueError('Manifest exceeds 16 MiB')
     manifest = json.loads(manifest_path.read_text())
-    if manifest.get('schema_version') != 1:
-        raise ValueError('Only sprite_baker schema version 1 is supported')
+    if manifest.get('schema_version') not in (1, 2):
+        raise ValueError('Only sprite_baker schema versions 1 and 2 are supported')
     files = {'manifest.json': manifest_path}
     for sheet in manifest['sheets']:
         for page in sheet['pages']:

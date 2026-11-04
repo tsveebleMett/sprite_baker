@@ -114,7 +114,14 @@ func _layer(part: Dictionary, animation_id: String, frame: int, direction: int, 
 		var image := _load_png(page[channel])
 		if image == null:
 			return {}
-		layer[channel] = image.get_region(rect)
+		if int(manifest.schema_version) == 2:
+			var restored := Image.create(int(manifest.profile.export_size[0]), int(manifest.profile.export_size[1]), false, Image.FORMAT_RGBA8)
+			restored.fill(Color.TRANSPARENT)
+			if not entry.empty:
+				restored.blit_rect(image, rect, Vector2i(int(entry.offset[0]), int(entry.offset[1])))
+			layer[channel] = restored
+		else:
+			layer[channel] = image.get_region(rect)
 	return layer
 
 func _load_png(relative_path: String) -> Image:

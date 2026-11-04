@@ -19,7 +19,7 @@ static func size_pair(value: Variant, maximum: int = 4096) -> bool:
 	return value is Array and value.size() == 2 and integer(value[0], 1, maximum) and integer(value[1], 1, maximum)
 
 static func validate(data: Dictionary, directory: String) -> String:
-	if data.get("schema_version") != 1:
+	if data.get("schema_version") != 1 and data.get("schema_version") != 2:
 		return "Unbekannte Manifest-Version."
 	if not data.get("asset_id") is String or not valid_id(data.asset_id):
 		return "Ungültige Asset-ID im Manifest."
@@ -126,7 +126,7 @@ static func _sheets(data: Dictionary, directory: String) -> String:
 		var problem := _pages(sheet.get("pages"), directory)
 		if not problem.is_empty():
 			return problem
-		problem = _frames(sheet, data.profile, int(animations[sheet.animation_id]))
+		problem = _frames(sheet, data.profile, int(animations[sheet.animation_id]), int(data.schema_version))
 		if not problem.is_empty():
 			return problem
 	return ""
@@ -171,7 +171,7 @@ static func _png_header(path: String, size: Array) -> String:
 		return "PNG muss verlustfreies RGBA mit 8 Bit je Kanal sein."
 	return ""
 
-static func _frames(sheet: Dictionary, profile: Dictionary, count: int) -> String:
+static func _frames(sheet: Dictionary, profile: Dictionary, count: int, version: int = 1) -> String:
 	var frames: Variant = sheet.get("frames")
 	if not frames is Array or frames.size() != count * int(profile.directions):
 		return "Unvollständiges Frameraster."
@@ -191,8 +191,21 @@ static func _frames(sheet: Dictionary, profile: Dictionary, count: int) -> Strin
 		for component in rect:
 			if not integer(component, 0, 4096):
 				return "Ungültige Frame-Koordinate."
-		if rect[2] != profile.export_size[0] or rect[3] != profile.export_size[1]:
-			return "Framegröße weicht vom Bake-Profil ab."
+		if version == 1:
+			if frame.has("offset") or frame.has("source_size") or frame.has("empty"):
+				return "Zuschnitt-Metadaten benötigen Version 2."
+			if rect[2] != profile.export_size[0] or rect[3] != profile.export_size[1]:
+				return "Framegröße weicht vom Bake-Profil ab."
+		else:
+			var offset: Variant = frame.get("offset")
+			if not offset is Array or offset.size() != 2 or not integer(offset[0], 0, 4096) or not integer(offset[1], 0, 4096):
+				return "Ungültiger Frame-Offset."
+			if frame.get("source_size") != profile.export_size or not frame.get("empty") is bool:
+				return "Fehlende Ursprungsgröße oder Leerframe-Markierung."
+			if rect[2] < 1 or rect[3] < 1 or offset[0] + rect[2] > profile.export_size[0] or offset[1] + rect[3] > profile.export_size[1]:
+				return "Frame liegt außerhalb des ursprünglichen Bildraums."
+			if frame.empty and (rect[2] != 1 or rect[3] != 1 or offset[0] != 0 or offset[1] != 0):
+				return "Leerframes müssen 1x1 bei Offset Null sein."
 		var page_size: Array = sheet.pages[int(frame.page)].size
 		if rect[0] + rect[2] > page_size[0] or rect[1] + rect[3] > page_size[1]:
 			return "Frame liegt außerhalb der Atlasseite."

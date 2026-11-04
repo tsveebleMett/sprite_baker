@@ -1,6 +1,6 @@
 # Delivery to plunderground_rust
 
-The interchange contract remains [export format v1](export-format.md). The baker
+The interchange contract remains [export format v2 (with v1 read compatibility)](export-format.md). The baker
 owns source models, animation sampling, cameras, masks and depth capture. The
 consumer owns outfit selection, per-region tint colors, depth composition,
 animation playback and game rendering. Do not flatten modular parts in transit.
@@ -95,3 +95,30 @@ The consumer prepares and plays the mapped clips, not the unrelated weapon poses
 For reference comparisons, `scripts/reference_composites.gd` respects the same
 mapping and accepts an optional fourth argument `idle` or `walk`. Use separate
 output directories for the two actions; filenames remain `<outfit>-d<direction>.png`.
+
+## Producer-side trimmed packages
+
+Normal UI and batch bakes now emit schema v2 directly. The consumer does not
+need to discover bounds or repack these source frames. To migrate an existing
+complete v1 export losslessly without rerendering, run from the Baker root:
+
+```sh
+godot --headless --path . --script scripts/compact_export.gd -- \
+  /absolute/source/manifest.json /absolute/output/root
+```
+
+The command creates a NEW complete package through the normal atomic writer.
+Deliver its resulting directory with `scripts/deliver_export.py` and the existing
+outfit/catalog/provenance sidecars. It never changes the source export.
+The normal v2 bake uses the same `src/export/compact_page.gd` implementation.
+
+Verify every crop and minimal alpha-union bound with Pillow:
+
+```sh
+python scripts/verify_compact.py OLD_MANIFEST NEW_MANIFEST REPORT_JSON
+```
+
+The profile, depth range, animation times and source assets are unchanged.
+Outfit selection, tinting and depth composition are still runtime responsibilities;
+producer-side crop metadata now makes source geometry directly usable. Optional
+consumer packing of the final COMPOSED outfit is separate from source packing.

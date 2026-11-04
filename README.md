@@ -1,6 +1,6 @@
 # Sprite Baker
 
-Godot-Werkzeug für isometrische Sprite Sheets aus 3D-Modellen: animierte Kreaturen mit austauschbaren Teilen, statische Gegenstände und Umgebungsprops. Ausgabe sind **PNG-Sheets und ein engineunabhängiges JSON-Manifest**. Die eingebaute Paper-Doll-Vorschau liest ausschließlich diese Exportdateien.
+Godot-Werkzeug für isometrische Sprite Sheets aus 3D-Modellen: animierte Kreaturen mit austauschbaren Teilen, statische Gegenstände und Umgebungsprops. Ausgabe sind **zugeschnittene PNG-Atlanten und ein engineunabhängiges JSON-Manifest (v2)**. Jeder Frame erhält sein Atlas-Rechteck, den Offset im gemeinsamen Bildraum und die ursprüngliche Größe; Farbe, Maske und Tiefe bleiben deckungsgleich. Die eingebaute Paper-Doll-Vorschau liest ausschließlich diese Exportdateien.
 
 ## Starten
 
@@ -60,7 +60,7 @@ Die vollständigen Datenfelder, Richtungs-/Pivot-Konventionen und Formeln stehen
 - `.partial-*`: abgebrochene oder fehlgeschlagene Ausgaben. Sie werden niemals als vollständige Exporte geöffnet und können nach Prüfung manuell entfernt werden.
 - Seiten sind maximal 4096 × 4096 Pixel groß. Lange Animationen werden automatisch über mehrere Seiten verteilt, ohne Frames zu zerschneiden.
 - Ein Auftrag ist auf 100.000 Teil-/Frame-/Richtungskombinationen begrenzt. Größere Aufträge in kleinere Exportgruppen teilen und jede zusammengehörige Gruppe gemeinsam einpassen.
-- Echte Teiltransparenz, Glas, automatische Kleidungsanpassung, Bodenschatten und Pixel-Art-Paletten gehören nicht zu Version 1. RGB24 bedeutet 24-Bit-Speicherung; die tatsächliche geometrische Genauigkeit ist zusätzlich durch GPU-Fließkommaarithmetik begrenzt.
+- Echte Teiltransparenz, Glas, automatische Kleidungsanpassung, Bodenschatten und Pixel-Art-Paletten gehören nicht zum Exportvertrag. RGB24 bedeutet 24-Bit-Speicherung; die tatsächliche geometrische Genauigkeit ist zusätzlich durch GPU-Fließkommaarithmetik begrenzt.
 
 ## Prüfen
 

@@ -27,7 +27,7 @@ try {
     if ($Mode -eq 'editor') { & $Godot --editor --path $projectRoot; exit $LASTEXITCODE }
     $tests = @()
     if ($Mode -in @('test', 'all-tests')) {
-        $tests += @('test_core', 'test_scene', 'test_export', 'test_ui')
+        $tests += @('test_core', 'test_scene', 'test_export', 'test_compact', 'test_ui')
     }
     if ($Mode -in @('render-test', 'all-tests')) {
         $tests += @('test_render', 'test_render_quality', 'test_ui_render')
