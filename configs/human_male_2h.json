@@ -1,0 +1,1267 @@
+{
+  "animations": [
+    {
+      "id": "idle",
+      "name": "Idle-2h",
+      "start": 0,
+      "end": 2.6333333333333333,
+      "loop": true
+    },
+    {
+      "id": "walk",
+      "name": "Walk-2h",
+      "start": 0,
+      "end": 2.7,
+      "loop": true
+    }
+  ],
+  "asset_id": "human_male_2h",
+  "asset_type": "creature",
+  "fps": 6,
+  "lighting": {
+    "ambient": 0.4,
+    "energy": 1.0
+  },
+  "output_dir": "res://output",
+  "parts": [
+    {
+      "id": "body_base",
+      "slot": "body",
+      "variant": "body_base",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_base",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_hidearmor",
+      "slot": "body",
+      "variant": "body_hidearmor",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_hideArmor",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_furarmor",
+      "slot": "body",
+      "variant": "body_furarmor",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_furArmor",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_lightarmor",
+      "slot": "body",
+      "variant": "body_lightarmor",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_lightArmor",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_leatherarmor",
+      "slot": "body",
+      "variant": "body_leatherarmor",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_leatherArmor",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_cuirbouilli",
+      "slot": "body",
+      "variant": "body_cuirbouilli",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_cuirBouilli",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_studdedleather",
+      "slot": "body",
+      "variant": "body_studdedleather",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_studdedLeather",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_robe",
+      "slot": "body",
+      "variant": "body_robe",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_robe",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "body_surcoat",
+      "slot": "body",
+      "variant": "body_surcoat",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Body_surcoat",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin",
+        "body_primary",
+        "body_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/body_mask.png"
+    },
+    {
+      "id": "head_base",
+      "slot": "head",
+      "variant": "head_base",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Head_base",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "skin"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/skin_mask.png"
+    },
+    {
+      "id": "hair_short",
+      "slot": "hair",
+      "variant": "hair_short",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Hair_short",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 4,
+      "regions": [
+        "hair"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/hair_mask.png"
+    },
+    {
+      "id": "beard_goatee",
+      "slot": "beard",
+      "variant": "beard_goatee",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Beard_goatee",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 5,
+      "regions": [
+        "hair"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/hair_mask.png"
+    },
+    {
+      "id": "helmet_hood",
+      "slot": "helmet",
+      "variant": "helmet_hood",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Helmet_Hood",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [
+        "helmet_primary",
+        "helmet_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/helmet_mask.png"
+    },
+    {
+      "id": "helmet_pelt",
+      "slot": "helmet",
+      "variant": "helmet_pelt",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Helmet_Pelt",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [
+        "helmet_primary",
+        "helmet_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/helmet_mask.png"
+    },
+    {
+      "id": "helmet_cerveilliere",
+      "slot": "helmet",
+      "variant": "helmet_cerveilliere",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Helmet_Cerveilliere",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [
+        "helmet_primary",
+        "helmet_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/helmet_mask.png"
+    },
+    {
+      "id": "helmet_kettlehat",
+      "slot": "helmet",
+      "variant": "helmet_kettlehat",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/Helmet_KettleHat",
+      "source": "",
+      "attachment_bone": "",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [
+        "helmet_primary",
+        "helmet_secondary"
+      ],
+      "material_regions": {},
+      "mask_texture": "res://assets/human_male/generated/helmet_mask.png"
+    },
+    {
+      "id": "weapon_centefist",
+      "slot": "weapon",
+      "variant": "weapon_centefist",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Centefist",
+      "source": "res://assets/human_male/generated/items/Centefist.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_falchion",
+      "slot": "weapon",
+      "variant": "weapon_falchion",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Falchion",
+      "source": "res://assets/human_male/generated/items/Falchion.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_flangedmace",
+      "slot": "weapon",
+      "variant": "weapon_flangedmace",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_FlangedMace",
+      "source": "res://assets/human_male/generated/items/FlangedMace.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_hammer",
+      "slot": "weapon",
+      "variant": "weapon_hammer",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Hammer",
+      "source": "res://assets/human_male/generated/items/Hammer.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_morningstar",
+      "slot": "weapon",
+      "variant": "weapon_morningstar",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_MorningStar",
+      "source": "res://assets/human_male/generated/items/MorningStar.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_shortsword",
+      "slot": "weapon",
+      "variant": "weapon_shortsword",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_ShortSword",
+      "source": "res://assets/human_male/generated/items/ShortSword.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_spikedclub",
+      "slot": "weapon",
+      "variant": "weapon_spikedclub",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_SpikedClub",
+      "source": "res://assets/human_male/generated/items/SpikedClub.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_battleaxe",
+      "slot": "weapon",
+      "variant": "weapon_battleaxe",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_BattleAxe",
+      "source": "res://assets/human_male/generated/items/BattleAxe.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_claymore",
+      "slot": "weapon",
+      "variant": "weapon_claymore",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Claymore",
+      "source": "res://assets/human_male/generated/items/Claymore.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_greatclub",
+      "slot": "weapon",
+      "variant": "weapon_greatclub",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Greatclub",
+      "source": "res://assets/human_male/generated/items/Greatclub.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_maul",
+      "slot": "weapon",
+      "variant": "weapon_maul",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Maul",
+      "source": "res://assets/human_male/generated/items/Maul.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_pickaxe",
+      "slot": "weapon",
+      "variant": "weapon_pickaxe",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Pickaxe",
+      "source": "res://assets/human_male/generated/items/Pickaxe.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_stoneaxe",
+      "slot": "weapon",
+      "variant": "weapon_stoneaxe",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_StoneAxe",
+      "source": "res://assets/human_male/generated/items/StoneAxe.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_flatbow",
+      "slot": "weapon",
+      "variant": "weapon_flatbow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Flatbow",
+      "source": "res://assets/human_male/generated/items/Flatbow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_longbow",
+      "slot": "weapon",
+      "variant": "weapon_longbow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Longbow",
+      "source": "res://assets/human_male/generated/items/Longbow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_recurvebow",
+      "slot": "weapon",
+      "variant": "weapon_recurvebow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_RecurveBow",
+      "source": "res://assets/human_male/generated/items/RecurveBow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_shortbow",
+      "slot": "weapon",
+      "variant": "weapon_shortbow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Shortbow",
+      "source": "res://assets/human_male/generated/items/Shortbow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_warbow",
+      "slot": "weapon",
+      "variant": "weapon_warbow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Warbow",
+      "source": "res://assets/human_male/generated/items/Warbow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_gemstonestaff",
+      "slot": "weapon",
+      "variant": "weapon_gemstonestaff",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_GemstoneStaff",
+      "source": "res://assets/human_male/generated/items/GemstoneStaff.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_metalstaff",
+      "slot": "weapon",
+      "variant": "weapon_metalstaff",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_MetalStaff",
+      "source": "res://assets/human_male/generated/items/MetalStaff.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_quarterstaff",
+      "slot": "weapon",
+      "variant": "weapon_quarterstaff",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Quarterstaff",
+      "source": "res://assets/human_male/generated/items/Quarterstaff.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_shortstaff",
+      "slot": "weapon",
+      "variant": "weapon_shortstaff",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Shortstaff",
+      "source": "res://assets/human_male/generated/items/Shortstaff.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "weapon_walkingstick",
+      "slot": "weapon",
+      "variant": "weapon_walkingstick",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_WalkingStick",
+      "source": "res://assets/human_male/generated/items/WalkingStick.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "shield_kiteshield",
+      "slot": "shield",
+      "variant": "shield_kiteshield",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/shield_KiteShield",
+      "source": "res://assets/human_male/generated/items/KiteShield.tscn",
+      "attachment_bone": "Bone.hand_L.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "shield_plankshield",
+      "slot": "shield",
+      "variant": "shield_plankshield",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/shield_PlankShield",
+      "source": "res://assets/human_male/generated/items/PlankShield.tscn",
+      "attachment_bone": "Bone.hand_L.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "shield_reinforcedshield",
+      "slot": "shield",
+      "variant": "shield_reinforcedshield",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/shield_ReinforcedShield",
+      "source": "res://assets/human_male/generated/items/ReinforcedShield.tscn",
+      "attachment_bone": "Bone.hand_L.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "shield_roundshield",
+      "slot": "shield",
+      "variant": "shield_roundshield",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/shield_RoundShield",
+      "source": "res://assets/human_male/generated/items/RoundShield.tscn",
+      "attachment_bone": "Bone.hand_L.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    }
+  ],
+  "profile": {
+    "azimuth": 45.0,
+    "camera_distance": 10.0,
+    "camera_size": 4.0,
+    "camera_target": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "directions": 8,
+    "elevation": 30.0,
+    "far": 20.0,
+    "id": "human-male-v1",
+    "locked": false,
+    "max_page_size": 4096,
+    "near": 0.05,
+    "supersample": 2,
+    "target_size": [
+      128,
+      128
+    ]
+  },
+  "schema_version": 1,
+  "source": "res://assets/human_male/generated/human_male.tscn"
+}

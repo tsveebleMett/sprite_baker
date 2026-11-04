@@ -1,0 +1,126 @@
+{
+  "outfits": [
+    {
+      "id": "blue_swordsman",
+      "slots": {
+        "body": "body_lightarmor",
+        "head": "head_base",
+        "beard": "beard_goatee",
+        "weapon": "weapon_falchion",
+        "helmet": "helmet_kettlehat",
+        "shield": "shield_reinforcedshield",
+        "hair": ""
+      },
+      "tints": {
+        "skin": [
+          0.8117647058823529,
+          0.6078431372549019,
+          0.4549019607843137
+        ],
+        "hair": [
+          0.3568627450980392,
+          0.2549019607843137,
+          0.1411764705882353
+        ],
+        "body_primary": [
+          0.141176,
+          0.478431,
+          0.839216
+        ],
+        "body_secondary": [
+          0.141176,
+          0.478431,
+          0.839216
+        ],
+        "helmet_primary": [
+          0.662118,
+          0.713843,
+          0.785922
+        ],
+        "helmet_secondary": [
+          0.510912,
+          0.545751,
+          0.588825
+        ]
+      }
+    },
+    {
+      "id": "red_leather_swordsman",
+      "slots": {
+        "body": "body_studdedleather",
+        "head": "head_base",
+        "beard": "beard_goatee",
+        "weapon": "weapon_shortsword",
+        "helmet": "helmet_cerveilliere",
+        "shield": "shield_kiteshield",
+        "hair": ""
+      },
+      "tints": {
+        "skin": [
+          0.8235294117647058,
+          0.6313725490196078,
+          0.5058823529411764
+        ],
+        "hair": [
+          0.6078431372549019,
+          0.4196078431372549,
+          0.2627450980392157
+        ],
+        "body_primary": [
+          0.667382,
+          0.478496,
+          0.399414
+        ],
+        "body_secondary": [
+          0.706824,
+          0.694627,
+          0.731804
+        ],
+        "helmet_primary": [
+          0.706824,
+          0.694627,
+          0.731804
+        ],
+        "helmet_secondary": [
+          0.667382,
+          0.478496,
+          0.399414
+        ]
+      }
+    },
+    {
+      "id": "green_traveller",
+      "slots": {
+        "body": "body_base",
+        "head": "head_base",
+        "beard": "beard_goatee",
+        "weapon": "weapon_walkingstick",
+        "hair": "hair_short",
+        "shield": "",
+        "helmet": ""
+      },
+      "tints": {
+        "skin": [
+          0.9019607843137255,
+          0.7254901960784313,
+          0.611764705882353
+        ],
+        "hair": [
+          0.4392156862745098,
+          0.2901960784313726,
+          0.19215686274509805
+        ],
+        "body_primary": [
+          0.337255,
+          0.435294,
+          0.329412
+        ],
+        "body_secondary": [
+          0.337255,
+          0.435294,
+          0.329412
+        ]
+      }
+    }
+  ]
+}

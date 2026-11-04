@@ -84,3 +84,11 @@ Optionaler Test einer **echten Blender-Datei**, in einem separaten Hintergrundpr
 ```
 
 Die erzeugte Fixture liegt unter `tests/fixtures/generated/` und wird nicht versioniert. Der Test importiert sie über Godot, backt ihre Teile und rekonstruiert alle acht Richtungen aus den Exportdateien.
+
+## Plunderground-Menschen und Rust-Auslieferung
+
+Die originale modulare Menschenfamilie wird mit `scripts/prepare_human.py` aus
+lokalen Referenzprojekten vorbereitet. Siehe [Menschen-Pipeline](docs/human-male.md)
+für Quellen, Farbregionen, Ausrüstung und Bake-Aufrufe sowie
+[Auslieferung an plunderground_rust](docs/delivery.md) für unveränderte Bundles,
+Outfits und den engineübergreifenden Pixelvergleich.
