@@ -1,0 +1,22 @@
+; Sprite Baker — open this project in Godot 4.6.1 or later.
+config_version=5
+
+[application]
+config/name="Sprite Baker"
+run/main_scene="res://src/ui/main.tscn"
+config/features=PackedStringArray("4.6", "Forward Plus")
+
+[display]
+window/size/viewport_width=1440
+window/size/viewport_height=960
+window/size/window_width_override=1440
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="forward_plus"
+textures/default_filters/use_nearest_mipmap_filter=false
+
+[filesystem]
+import/blender/enabled=true

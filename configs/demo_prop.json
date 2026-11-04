@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"end": 0.0,
+			"id": "static",
+			"loop": false,
+			"name": "",
+			"start": 0.0
+		}
+	],
+	"asset_id": "demo_prop",
+	"asset_type": "prop",
+	"fps": 12,
+	"lighting": {
+		"ambient": 0.4,
+		"energy": 1.0
+	},
+	"output_dir": "res://output",
+	"parts": [
+		{
+			"attachment_bone": "",
+			"id": "body",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 0
+			},
+			"node_path": "Body",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 0,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "body",
+			"source": "",
+			"variant": "base"
+		}
+	],
+	"profile": {
+		"azimuth": 45.0,
+		"camera_distance": 10.0,
+		"camera_size": 4.0,
+		"camera_target": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"directions": 8,
+		"elevation": 30.0,
+		"far": 20.0,
+		"id": "default-v1",
+		"locked": false,
+		"max_page_size": 4096,
+		"near": 0.05,
+		"supersample": 2,
+		"target_size": [
+			256,
+			256
+		]
+	},
+	"schema_version": 1,
+	"source": "demo://prop"
+}

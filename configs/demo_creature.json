@@ -1,0 +1,210 @@
+{
+	"animations": [
+		{
+			"end": 1.0,
+			"id": "idle",
+			"loop": true,
+			"name": "idle",
+			"start": 0.0
+		}
+	],
+	"asset_id": "demo_creature",
+	"asset_type": "creature",
+	"fps": 12,
+	"lighting": {
+		"ambient": 0.4,
+		"energy": 1.0
+	},
+	"output_dir": "res://output",
+	"parts": [
+		{
+			"attachment_bone": "",
+			"id": "body",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 0
+			},
+			"node_path": "Body",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 0,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "body",
+			"source": "",
+			"variant": "base"
+		},
+		{
+			"attachment_bone": "",
+			"id": "cape",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 1
+			},
+			"node_path": "Cape",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 1,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "cape",
+			"source": "",
+			"variant": "base"
+		},
+		{
+			"attachment_bone": "",
+			"id": "helmet",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 2
+			},
+			"node_path": "Rig/HeadSocket/Helmet",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 2,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "helmet",
+			"source": "",
+			"variant": "ridge"
+		},
+		{
+			"attachment_bone": "",
+			"id": "weapon",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 2
+			},
+			"node_path": "Rig/HandSocket/Weapon",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 3,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "weapon",
+			"source": "",
+			"variant": "base"
+		},
+		{
+			"attachment_bone": "",
+			"id": "helmet_round",
+			"mask_texture": "",
+			"material_regions": {
+				"0": 2
+			},
+			"node_path": "Rig/HeadSocket/HelmetAlt",
+			"position": [
+				0,
+				0,
+				0
+			],
+			"priority": 2,
+			"regions": [
+				"cloth",
+				"leather",
+				"metal"
+			],
+			"rotation_degrees": [
+				0,
+				0,
+				0
+			],
+			"scale": [
+				1,
+				1,
+				1
+			],
+			"slot": "helmet",
+			"source": "",
+			"variant": "round"
+		}
+	],
+	"profile": {
+		"azimuth": 45.0,
+		"camera_distance": 10.0,
+		"camera_size": 4.0,
+		"camera_target": [
+			0.0,
+			1.0,
+			0.0
+		],
+		"directions": 8,
+		"elevation": 30.0,
+		"far": 20.0,
+		"id": "default-v1",
+		"locked": false,
+		"max_page_size": 4096,
+		"near": 0.05,
+		"supersample": 2,
+		"target_size": [
+			256,
+			256
+		]
+	},
+	"schema_version": 1,
+	"source": "demo://creature"
+}

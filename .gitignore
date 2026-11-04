@@ -1,0 +1,8 @@
+.godot/
+.tools/
+output/
+test-output/
+*.tmp
+*.blend1
+__pycache__/
+tests/fixtures/generated/
