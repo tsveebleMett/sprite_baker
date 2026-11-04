@@ -134,12 +134,40 @@
     "shield_kiteshield",
     "shield_plankshield",
     "shield_reinforcedshield",
-    "shield_roundshield"
+    "shield_roundshield",
+    "weapon_hoardfall_shortbow",
+    "ring_right",
+    "ring_left"
   ],
-  "unsupported": [
-    {
-      "id": "artifact_ring",
-      "reason": "Source uses triplanar PBR, unsupported by reproducible Baker material passes; no substitute material applied."
-    }
-  ]
+  "weapon_animation_families": {
+    "weapon_centefist": "1h",
+    "weapon_falchion": "1h",
+    "weapon_flangedmace": "1h",
+    "weapon_hammer": "1h",
+    "weapon_morningstar": "1h",
+    "weapon_shortsword": "1h",
+    "weapon_spikedclub": "1h",
+    "weapon_battleaxe": "2h",
+    "weapon_claymore": "2h",
+    "weapon_greatclub": "2h",
+    "weapon_maul": "2h",
+    "weapon_pickaxe": "2h",
+    "weapon_stoneaxe": "2h",
+    "weapon_flatbow": "bow",
+    "weapon_longbow": "bow",
+    "weapon_recurvebow": "bow",
+    "weapon_shortbow": "bow",
+    "weapon_warbow": "bow",
+    "weapon_gemstonestaff": "staff",
+    "weapon_metalstaff": "staff",
+    "weapon_quarterstaff": "staff",
+    "weapon_shortstaff": "staff",
+    "weapon_walkingstick": "staff",
+    "weapon_hoardfall_shortbow": "bow"
+  },
+  "unsupported": [],
+  "artifact_slots": {
+    "artifact_1": "ring_right",
+    "artifact_2": "ring_left"
+  }
 }

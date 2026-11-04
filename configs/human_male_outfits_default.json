@@ -1,0 +1,284 @@
+{
+  "outfits": [
+    {
+      "id": "falchion",
+      "slots": {
+        "body": "body_lightarmor",
+        "head": "head_base",
+        "hair": "",
+        "beard": "beard_goatee",
+        "helmet": "helmet_cerveilliere",
+        "weapon": "weapon_falchion",
+        "shield": "shield_plankshield",
+        "artifact_1": "ring_right",
+        "artifact_2": ""
+      },
+      "tints": {
+        "skin": [
+          0.9411764705882353,
+          0.788235294117647,
+          0.6588235294117647
+        ],
+        "hair": [
+          0.2784313725490196,
+          0.20784313725490197,
+          0.16862745098039217
+        ],
+        "body_primary": [
+          0.4,
+          0.321569,
+          0.494118
+        ],
+        "body_secondary": [
+          0.4,
+          0.321569,
+          0.494118
+        ],
+        "helmet_primary": [
+          0.688,
+          0.698157,
+          0.751412
+        ],
+        "helmet_secondary": [
+          0.6015,
+          0.490849,
+          0.468041
+        ]
+      },
+      "animations": {
+        "idle": "idle",
+        "walk": "walk"
+      }
+    },
+    {
+      "id": "flangedmace",
+      "slots": {
+        "body": "body_leatherarmor",
+        "head": "head_base",
+        "hair": "",
+        "beard": "beard_goatee",
+        "helmet": "helmet_kettlehat",
+        "weapon": "weapon_flangedmace",
+        "shield": "shield_reinforcedshield",
+        "artifact_1": "",
+        "artifact_2": "ring_left"
+      },
+      "tints": {
+        "skin": [
+          0.7647058823529411,
+          0.5529411764705883,
+          0.4392156862745098
+        ],
+        "hair": [
+          0.4196078431372549,
+          0.3254901960784314,
+          0.23137254901960785
+        ],
+        "body_primary": [
+          0.575422,
+          0.547124,
+          0.473531
+        ],
+        "body_secondary": [
+          0.32549,
+          0.482353,
+          0.509804
+        ],
+        "helmet_primary": [
+          0.680549,
+          0.714235,
+          0.75298
+        ],
+        "helmet_secondary": [
+          0.575422,
+          0.547124,
+          0.473531
+        ]
+      },
+      "animations": {
+        "idle": "idle",
+        "walk": "walk"
+      }
+    },
+    {
+      "id": "claymore",
+      "slots": {
+        "body": "body_furarmor",
+        "head": "head_base",
+        "hair": "",
+        "beard": "beard_goatee",
+        "helmet": "helmet_pelt",
+        "weapon": "weapon_claymore",
+        "shield": "",
+        "artifact_1": "",
+        "artifact_2": ""
+      },
+      "tints": {
+        "skin": [
+          0.8235294117647058,
+          0.6313725490196078,
+          0.5058823529411764
+        ],
+        "hair": [
+          0.6078431372549019,
+          0.4196078431372549,
+          0.2627450980392157
+        ],
+        "body_primary": [
+          0.437647,
+          0.342745,
+          0.316863
+        ],
+        "body_secondary": [
+          0.437647,
+          0.342745,
+          0.316863
+        ],
+        "helmet_primary": [
+          0.437647,
+          0.342745,
+          0.316863
+        ],
+        "helmet_secondary": [
+          0.437647,
+          0.342745,
+          0.316863
+        ]
+      },
+      "animations": {
+        "idle": "idle_2h",
+        "walk": "walk_2h"
+      }
+    },
+    {
+      "id": "longbow",
+      "slots": {
+        "body": "body_hidearmor",
+        "head": "head_base",
+        "hair": "hair_short",
+        "beard": "beard_goatee",
+        "helmet": "",
+        "weapon": "weapon_longbow",
+        "shield": "",
+        "artifact_1": "",
+        "artifact_2": "ring_left"
+      },
+      "tints": {
+        "skin": [
+          0.7647058823529411,
+          0.5529411764705883,
+          0.4392156862745098
+        ],
+        "hair": [
+          0.2784313725490196,
+          0.20784313725490197,
+          0.16862745098039217
+        ],
+        "body_primary": [
+          0.575422,
+          0.547124,
+          0.473531
+        ],
+        "body_secondary": [
+          0.575422,
+          0.547124,
+          0.473531
+        ]
+      },
+      "animations": {
+        "idle": "idle_bow",
+        "walk": "walk_bow"
+      }
+    },
+    {
+      "id": "quarterstaff",
+      "slots": {
+        "body": "body_studdedleather",
+        "head": "head_base",
+        "hair": "hair_short",
+        "beard": "beard_goatee",
+        "helmet": "",
+        "weapon": "weapon_quarterstaff",
+        "shield": "",
+        "artifact_1": "ring_right",
+        "artifact_2": ""
+      },
+      "tints": {
+        "skin": [
+          0.9411764705882353,
+          0.788235294117647,
+          0.6588235294117647
+        ],
+        "hair": [
+          0.4392156862745098,
+          0.2901960784313726,
+          0.19215686274509805
+        ],
+        "body_primary": [
+          0.6015,
+          0.490849,
+          0.468041
+        ],
+        "body_secondary": [
+          0.688,
+          0.698157,
+          0.751412
+        ]
+      },
+      "animations": {
+        "idle": "idle_staff",
+        "walk": "walk_staff"
+      }
+    },
+    {
+      "id": "walkingstick",
+      "slots": {
+        "body": "body_leatherarmor",
+        "head": "head_base",
+        "hair": "",
+        "beard": "beard_goatee",
+        "helmet": "helmet_pelt",
+        "weapon": "weapon_walkingstick",
+        "shield": "",
+        "artifact_1": "",
+        "artifact_2": "ring_left"
+      },
+      "tints": {
+        "skin": [
+          0.7647058823529411,
+          0.5529411764705883,
+          0.4392156862745098
+        ],
+        "hair": [
+          0.4392156862745098,
+          0.2901960784313726,
+          0.19215686274509805
+        ],
+        "body_primary": [
+          0.575422,
+          0.547124,
+          0.473531
+        ],
+        "body_secondary": [
+          0.32549,
+          0.482353,
+          0.509804
+        ],
+        "helmet_primary": [
+          0.385098,
+          0.381961,
+          0.359216
+        ],
+        "helmet_secondary": [
+          0.385098,
+          0.381961,
+          0.359216
+        ]
+      },
+      "animations": {
+        "idle": "idle_staff",
+        "walk": "walk_staff"
+      }
+    }
+  ]
+}

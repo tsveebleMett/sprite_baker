@@ -39,7 +39,7 @@ Im Tool **Modell wählen → Quelle untersuchen** verwenden. Die erkannten Meshe
 - Starre Ausrüstung erhält eine separate Quellszene und einen benannten Befestigungsknochen. Position, Rotation und Skalierung lassen sich pro Teil korrigieren.
 - Für Varianten denselben Slot verwenden, beispielsweise `head`; Teil-IDs müssen eindeutig sein. Die PNG-Vorschau wählt höchstens eine Variante je Slot.
 - Unterstützte Animationen bewegen Position, Rotation, Skalierung und Blend Shapes. Scripts, Physik, Material-/Visibility-Tracks und prozedurale Treiber gehören nicht zum Bake-Vertrag.
-- Unterstützt werden Standardmaterialien mit deckender oder ausgeschnittener Transparenz. Benutzerdefinierte Shader, Overlays, Triplanar-/Parallax-Mapping, Geometriewachstum und Fade-Effekte werden mit einer Fehlermeldung abgelehnt. Partikel, CSG, MultiMeshes und andere zusätzliche Renderquellen werden nicht still in Datenkanäle übernommen.
+- Unterstützt werden Standardmaterialien mit deckender oder ausgeschnittener Transparenz. Benutzerdefinierte Shader, Overlays, Parallax-Mapping, Geometriewachstum und Fade-Effekte werden mit einer Fehlermeldung abgelehnt. Deckende, nicht einfärbbare Triplanar-Materialien werden originalgetreu unterstützt; Triplanar mit Alpha-Ausschnitt oder Farbmaske nicht. Partikel, CSG, MultiMeshes und andere zusätzliche Renderquellen werden nicht still in Datenkanäle übernommen.
 - Ein Mesh kann nicht als separat isoliertes Teil unter einem anderen Mesh liegen. Solche Geometrie gemeinsam gruppieren oder unter reine Node3D-Container umordnen.
 
 ## Einfärbung und Verdeckung

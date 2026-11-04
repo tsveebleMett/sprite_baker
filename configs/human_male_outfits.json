@@ -5,11 +5,11 @@
       "slots": {
         "body": "body_lightarmor",
         "head": "head_base",
+        "hair": "",
         "beard": "beard_goatee",
-        "weapon": "weapon_falchion",
         "helmet": "helmet_kettlehat",
-        "shield": "shield_reinforcedshield",
-        "hair": ""
+        "weapon": "weapon_falchion",
+        "shield": "shield_reinforcedshield"
       },
       "tints": {
         "skin": [
@@ -49,11 +49,11 @@
       "slots": {
         "body": "body_studdedleather",
         "head": "head_base",
+        "hair": "",
         "beard": "beard_goatee",
-        "weapon": "weapon_shortsword",
         "helmet": "helmet_cerveilliere",
-        "shield": "shield_kiteshield",
-        "hair": ""
+        "weapon": "weapon_shortsword",
+        "shield": "shield_kiteshield"
       },
       "tints": {
         "skin": [
@@ -93,11 +93,11 @@
       "slots": {
         "body": "body_base",
         "head": "head_base",
-        "beard": "beard_goatee",
-        "weapon": "weapon_walkingstick",
         "hair": "hair_short",
-        "shield": "",
-        "helmet": ""
+        "beard": "beard_goatee",
+        "helmet": "",
+        "weapon": "weapon_walkingstick",
+        "shield": ""
       },
       "tints": {
         "skin": [

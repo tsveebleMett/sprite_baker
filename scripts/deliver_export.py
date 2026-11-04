@@ -8,7 +8,9 @@ import shutil
 import tempfile
 
 
-def deliver(source: Path, destination: Path, outfits: Path | None = None, provenance: Path | None = None) -> None:
+def deliver(source: Path, destination: Path, outfits: Path | None = None,
+            provenance: Path | None = None, outfits_all: Path | None = None,
+            outfits_showcase: Path | None = None, catalog: Path | None = None) -> None:
     source = source.resolve()
     if source.name.startswith('.partial-'):
         raise ValueError('Incomplete exports cannot be delivered')
@@ -36,16 +38,18 @@ def deliver(source: Path, destination: Path, outfits: Path | None = None, proven
                     or header[24:26] != bytes([8, 6])):
                     raise ValueError(f'Expected matching RGBA8 PNG: {name}')
                 files[name] = path
-    if outfits is not None:
-        json.loads(outfits.read_text())
-        if 'outfits.json' in files:
-            raise ValueError('Export already contains outfits.json')
-        files['outfits.json'] = outfits.resolve()
-    if provenance is not None:
-        json.loads(provenance.read_text())
-        if 'source-provenance.json' in files:
-            raise ValueError('Export already contains source-provenance.json')
-        files['source-provenance.json'] = provenance.resolve()
+    metadata = {'outfits.json': outfits, 'source-provenance.json': provenance,
+                'outfits_all.json': outfits_all, 'outfits_showcase.json': outfits_showcase,
+                'catalog.json': catalog}
+    for name, path in metadata.items():
+        if path is None:
+            continue
+        if path.stat().st_size > 16 * 1024 * 1024:
+            raise ValueError(f'Metadata exceeds 16 MiB: {name}')
+        json.loads(path.read_text())
+        if name in files:
+            raise ValueError(f'Export already contains {name}')
+        files[name] = path.resolve()
     if 'delivery.json' in files:
         raise ValueError('Export page collides with delivery metadata')
     if destination.exists():
@@ -75,6 +79,10 @@ if __name__ == '__main__':
     parser.add_argument('destination', type=Path, help='New directory in consumer assets')
     parser.add_argument('--outfits', type=Path)
     parser.add_argument('--provenance', type=Path, help='Optional source hash inventory')
+    parser.add_argument('--outfits-all', type=Path)
+    parser.add_argument('--outfits-showcase', type=Path)
+    parser.add_argument('--catalog', type=Path)
     args = parser.parse_args()
-    deliver(args.source, args.destination, args.outfits, args.provenance)
+    deliver(args.source, args.destination, args.outfits, args.provenance,
+            args.outfits_all, args.outfits_showcase, args.catalog)
     print(args.destination / 'manifest.json')

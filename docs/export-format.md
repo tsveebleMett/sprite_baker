@@ -101,7 +101,10 @@ images. Self-shadowing is allowed, but lighting, shadows, ambient occlusion and
 reflections from other exchangeable parts are excluded. Otherwise an individual
 part would contain a baked dependency on one equipment combination.
 
-Version 1 supports opaque geometry and alpha-cutout materials. It does not
+Version 1 supports opaque geometry and alpha-cutout materials. Opaque untinted
+StandardMaterial3D triplanar surfaces are supported: beauty preserves the source
+material, while mask/depth depend only on geometry. Triplanar cutouts, color
+regions and mask textures are rejected. It does not
 represent glass, layered translucency, or multiple depth samples at one pixel.
 Input equipment must fit its family rig; the baker does not retarget or resize
 incompatible armor automatically.

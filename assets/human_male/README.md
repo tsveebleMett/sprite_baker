@@ -34,9 +34,13 @@ and the `configs/human_male*.json` recipes; customize a copied recipe instead.
   Plunderground hand equipment is also included: Centefist, Hammer, MorningStar,
   SpikedClub, Claymore, Greatclub, Maul, Pickaxe, StoneAxe, Flatbow, RecurveBow,
   Shortbow, Warbow, GemstoneStaff, MetalStaff, Shortstaff and PlankShield.
-  Thus the full recipe has 43 independently selectable parts. Same-named
+  Thus the complete recipe has 46 independently selectable parts, including the
+  same ring mesh independently attached in the two artifact slots. Same-named
   Hoardfall imports take precedence; texture filenames include a content hash
   to prevent accidental cross-repository basename collisions.
+- Hoardfall’s shortbow is also included as `weapon_hoardfall_shortbow`: its
+  `starter_party.gd` visual definition scales Longbow by 0.72. This is distinct
+  from Plunderground’s original `weapon_shortbow` mesh; neither replaces the other.
 - Weapons attach to `Bone.hand_R.Attachment`, including bows. Shields attach to
   `Bone.hand_L.Attachment`. Mesh-local transforms (including shield rotations)
   survive staging. The original rig remains intact; there is no retargeting.
@@ -105,17 +109,56 @@ Colors/material roles come from `scripts/roguelike/starter_party.gd`,
 `scripts/ui/components/human_model.gd`, and `scripts/ui/equipment_palette.gd`.
 Generated palettes modify no vertex, skin bind, bone, or animation data.
 
-### Explicit material exclusion
+### Original ring appearance
 
-`artifact_ring` is listed in the catalog's `unsupported` entries, not silently
-substituted: its original iron material uses real triplanar color, normal,
-roughness and metalness textures. The baker rejects that material model. The
-43-part recipes therefore cover the source human meshes plus hand weapons and
-shields, not rings. A future ring adapter needs faithful UV/material conversion.
+Hoardfall's human model inherits `scripts/ui/components/dwarf_model.gd`, whose
+artifact branch attaches the ring to `Bone.hand_R.Attachment` for `artifact_1`
+and `Bone.hand_L.Attachment` for `artifact_2`. The prepared parts `ring_right`
+and `ring_left` preserve those exact attachment transforms and original iron
+PBR material. They do not invent finger-specific placement. Plunderground's
+current equipment-bone resolver has no ring binding; this visible ring behavior
+comes from Hoardfall. Its amulet definition has no model, so there is no amulet
+mesh to add.
+
+Opaque **untinted** triplanar materials are now supported faithfully: Godot's
+original material renders beauty, while the depth pass uses unchanged geometry
+and the mask pass writes zero weights. Triplanar alpha cutouts, tint regions and
+mask textures remain rejected because their data passes would need projected
+texture sampling. `tests/test_ring_render.gd` compares the actual original ring
+material with exported composition in all eight directions and checks depth
+coverage and the unsupported-material boundaries.
+
+### Complete equipment delivery
+
+`configs/human_male_complete.json` contains all 46 parts and eight animation IDs:
+`idle`, `walk`, `idle_2h`, `walk_2h`, `idle_bow`, `walk_bow`, `idle_staff`,
+`walk_staff`. All parts and clips are fitted together, so profile scale, pivots,
+depth range and framing are compatible across the whole family. This is 48,576
+part/frame/direction samples (6 FPS, eight directions, 16 idle and 17 walk samples
+per family), not a reduction or runtime optimization.
+
+```sh
+godot --path . --script scripts/bake_human.gd -- res://configs/human_male_complete.json
+```
+
+`human_male_outfits_all.json` supplies 24 explicit weapon loadouts. Together they
+exercise every body, helmet, shield, hair/beard and ring part. Two-handed, bow
+and staff presets disable shields, and helmets disable hair. Each preset maps
+semantic `idle`/`walk` states to its weapon-family clips through `animations`.
+The categories in `human_male_catalog.json` are authoritative; WalkingStick uses
+the staff family, not generic one-handed animations.
+
+`human_male_outfits_default.json` selects six normal-game appearances spanning
+all four families. `human_male_outfits_showcase.json` selects eight showcase
+appearances (two per family). These use explicit empty strings for every unused
+slot, including both artifacts. They are for the **complete** bundle; the original
+three-outfit file remains compatible with the original thirteen-part preview.
+The normal runtime must prepare only the mapped clips for each outfit, rather
+than treating all eight family clips as interchangeable movement states.
 
 ### Verification
 
-After preparation/import, validate all four 43-part animation-family recipes and
+After preparation/import, validate the four family recipes and the complete 46-part recipe and
 the forward-axis contract with:
 
 ```sh
@@ -127,5 +170,25 @@ The outfit contract intentionally lists **every available preview slot** and use
 `""` for disabled parts. Omitting a slot selects a default part; adding unknown
 slots is invalid. Therefore the unhelmeted traveller explicitly selects
 `"helmet": ""` and `"shield": ""`, while helmeted outfits set `"hair": ""`.
-Preparation/validation of all 43 parts is not a claim that all combinations have
-been rendered: the initial preview bake contains thirteen selected parts.
+Preparation/validation of all 46 parts is not a claim that all combinations have
+been rendered: the initial preview bake contains thirteen selected parts; use the complete recipe for all 46 parts.
+
+### Extending a locked family
+
+`scripts/extend_human_bundle.gd` can add an in-bounds variant without replacing
+any published data. It restores the original profile and lock signature, never
+refits, runs the normal bounds check for every pose, then requires identical
+profile/depth/animation metadata. A new export directory contains the original
+sheets plus the new part; the normal manifest validator runs before publication.
+This is used for the separately discovered scaled-shortbow appearance in the
+current batch. A future complete bake uses the 46-part recipe directly.
+
+```sh
+godot --path . --script scripts/extend_human_bundle.gd -- \
+  /absolute/published/manifest.json res://configs/human_male_complete.json \
+  weapon_hoardfall_shortbow
+```
+
+The extension uses the same source, lighting, sampling and clips as the original
+configuration. Changing any signed profile input is rejected. Repeating the
+extension for an existing part is rejected rather than replacing its sheets.

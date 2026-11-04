@@ -12,14 +12,14 @@ func check(condition: bool, message: String) -> void:
 		push_error(message)
 
 func run() -> void:
-	for suffix in ["", "_2h", "_bow", "_staff"]:
+	for suffix in ["", "_2h", "_bow", "_staff", "_complete"]:
 		var config: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://configs/human_male%s.json" % suffix))
 		var baker = Baker.new()
 		root.add_child(baker)
 		var valid: bool = baker.configure(config)
 		check(valid, "Full human%s configuration: %s" % [suffix, baker.error])
 		if valid:
-			check(baker.adapter.parts.size() == 43, "Expected all 43 source parts")
+			check(baker.adapter.parts.size() == 46, "Expected all 46 source parts")
 			var model: Node3D = baker.adapter.root.get_node("human_male")
 			check((model.basis * Vector3.BACK).is_equal_approx(Vector3.FORWARD), "Authored +Z forward must normalize to baker -Z")
 			for definition in config.parts:

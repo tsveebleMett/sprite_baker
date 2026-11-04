@@ -1238,6 +1238,87 @@
       "regions": [],
       "material_regions": {},
       "mask_texture": ""
+    },
+    {
+      "id": "weapon_hoardfall_shortbow",
+      "slot": "weapon",
+      "variant": "weapon_hoardfall_shortbow",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/weapon_Longbow",
+      "source": "res://assets/human_male/generated/items/Longbow.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ],
+      "priority": 6,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "ring_right",
+      "slot": "artifact_1",
+      "variant": "ring_right",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/ring_right",
+      "source": "res://assets/human_male/generated/items/Ring.tscn",
+      "attachment_bone": "Bone.hand_R.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 10,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
+    },
+    {
+      "id": "ring_left",
+      "slot": "artifact_2",
+      "variant": "ring_left",
+      "node_path": "human_male/Human_Skeleton/Skeleton3D/ring_left",
+      "source": "res://assets/human_male/generated/items/Ring.tscn",
+      "attachment_bone": "Bone.hand_L.Attachment",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_degrees": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "priority": 10,
+      "regions": [],
+      "material_regions": {},
+      "mask_texture": ""
     }
   ],
   "profile": {

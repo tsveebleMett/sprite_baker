@@ -41,6 +41,22 @@ class DeliveryTests(unittest.TestCase):
                 delivery.deliver(self.source, self.root / 'consumer')
             self.assertFalse((self.root / 'consumer').exists())
 
+    def test_complete_metadata_is_hashed_and_invalid_json_is_not_published(self):
+        metadata = self.root / 'presets.json'
+        metadata.write_text('{"outfits": []}')
+        target = self.root / 'complete'
+        delivery.deliver(self.source, target, outfits_all=metadata,
+                         outfits_showcase=metadata, catalog=metadata)
+        hashes = json.loads((target / 'delivery.json').read_text())['sha256']
+        for name in ('outfits_all.json', 'outfits_showcase.json', 'catalog.json'):
+            self.assertIn(name, hashes)
+            self.assertEqual((target / name).read_bytes(), metadata.read_bytes())
+        metadata.write_text('not JSON')
+        invalid = self.root / 'invalid'
+        with self.assertRaises(ValueError):
+            delivery.deliver(self.source, invalid, outfits_all=metadata)
+        self.assertFalse(invalid.exists())
+
     def test_partial_and_incorrect_png_are_rejected(self):
         partial = self.root / '.partial-test'
         partial.mkdir()

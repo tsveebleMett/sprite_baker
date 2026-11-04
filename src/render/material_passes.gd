@@ -29,6 +29,9 @@ func prepare(parts: Dictionary, definitions: Array, profile: Dictionary) -> bool
 				var region := Vector3.ZERO
 				if channel >= 0 and channel < 3:
 					region[channel] = 1.0
+				if source.uv1_triplanar and (source.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED or region != Vector3.ZERO or mask != null or not definition.get("regions", []).is_empty() or not definition.get("material_regions", {}).is_empty()):
+					error = "Triplanar data passes require opaque, untinted parts without mask regions."
+					return false
 				passes.append([
 					_beauty(source, region, mask),
 					_data(source, region, mask, profile, 1),
@@ -54,7 +57,7 @@ func _data(source: BaseMaterial3D, region: Vector3, mask: Texture2D,
 	result.set_shader_parameter("region", region)
 	result.set_shader_parameter("has_mask", mask != null)
 	result.set_shader_parameter("mask_map", mask)
-	result.set_shader_parameter("has_albedo", source.albedo_texture != null)
+	result.set_shader_parameter("has_albedo", source.albedo_texture != null and not source.uv1_triplanar)
 	result.set_shader_parameter("albedo_map", source.albedo_texture)
 	result.set_shader_parameter("alpha_factor", source.albedo_color.a)
 	result.set_shader_parameter("alpha_cutoff", source.alpha_scissor_threshold)

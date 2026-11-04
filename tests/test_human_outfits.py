@@ -20,6 +20,33 @@ class HumanOutfitContract(unittest.TestCase):
             self.assertEqual(baked['slots'], runtime['slots'])
             self.assertIn('skin', runtime['tints'])
 
+    def test_complete_catalog_is_covered_and_animation_families_match(self):
+        config = json.loads((ROOT / 'configs/human_male_complete.json').read_text())
+        catalog = json.loads((ROOT / 'configs/human_male_catalog.json').read_text())
+        outfits = json.loads((ROOT / 'configs/human_male_outfits_all.json').read_text())['outfits']
+        parts = {part['id']: part for part in config['parts']}
+        self.assertEqual(len(parts), 46)
+        self.assertEqual({part for outfit in outfits for part in outfit['slots'].values() if part}, set(parts))
+        animation_ids = {animation['id'] for animation in config['animations']}
+        self.assertEqual(len(animation_ids), 8)
+        for outfit in outfits:
+            self.assertEqual(set(outfit['slots']), {part['slot'] for part in parts.values()})
+            for slot, part in outfit['slots'].items():
+                if part:
+                    self.assertEqual(parts[part]['slot'], slot)
+            family = catalog['weapon_animation_families'][outfit['slots']['weapon']]
+            suffix = '' if family == '1h' else '_' + family
+            self.assertEqual(outfit['animations'], {'idle':'idle'+suffix, 'walk':'walk'+suffix})
+            self.assertTrue(set(outfit['animations'].values()) <= animation_ids)
+            if family != '1h':
+                self.assertEqual(outfit['slots']['shield'], '')
+            if outfit['slots']['helmet']:
+                self.assertEqual(outfit['slots']['hair'], '')
+        for subset in ['default', 'showcase']:
+            chosen = json.loads((ROOT / ('configs/human_male_outfits_' + subset + '.json')).read_text())['outfits']
+            self.assertEqual({catalog['weapon_animation_families'][o['slots']['weapon']] for o in chosen}, {'1h','2h','bow','staff'})
+        self.assertEqual(catalog['unsupported'], [])
+
     def test_explicit_slot_selection_and_membership(self):
         config = json.loads((ROOT / 'configs/human_male_preview.json').read_text())
         outfits = json.loads((ROOT / 'configs/human_male_outfits.json').read_text())['outfits']

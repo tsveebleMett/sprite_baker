@@ -189,6 +189,41 @@ def preview_outfits(fixed_palette=False):
         outfits.append(dict(id=oid,slots=slots,tints={} if fixed_palette else tints))
     return outfits
 
+def complete_outfits(part_styles, fixed_palette=False):
+    """One explicit loadout per weapon, cycling all armor, helmet and shield variants."""
+    outfits = []
+    weapons = sorted(part_styles)
+    shields = ['kiteshield', 'plankshield', 'reinforcedshield', 'roundshield']
+    one_handed = 0
+    for index, weapon in enumerate(weapons):
+        style = part_styles[weapon]
+        body = BODIES[index % len(BODIES)]
+        helmet = ([''] + HELMETS)[index % (len(HELMETS) + 1)]
+        palette = index % len(CLOTH)
+        cloth = rgb(CLOTH[palette])
+        slots = {slot: '' for slot in ['body', 'head', 'hair', 'beard', 'helmet', 'weapon', 'shield']}
+        slots.update(body='body_' + body.lower(), head='head_base', beard='beard_goatee', weapon=weapon)
+        if helmet:
+            slots['helmet'] = 'helmet_' + helmet.lower()
+        else:
+            slots['hair'] = 'hair_short'
+        if style == '1h':
+            slots['shield'] = 'shield_' + shields[one_handed % len(shields)]
+            one_handed += 1
+        roles = ROLES[body]
+        tints = {'skin': rgb(SKINS[palette]), 'hair': rgb(HAIR[index % len(HAIR)]),
+                 'body_primary': tint(cloth, roles[0]), 'body_secondary': tint(cloth, roles[-1])}
+        if helmet:
+            roles = HELMET_ROLES[helmet]
+            tints.update(helmet_primary=tint(cloth, roles[0]), helmet_secondary=tint(cloth, roles[-1]))
+        slots['artifact_1'] = 'ring_right' if index % 3 == 0 else ''
+        slots['artifact_2'] = 'ring_left' if index % 3 == 1 or index == 0 else ''
+        suffix = '' if style == '1h' else '_' + style
+        outfits.append(dict(id=weapon.removeprefix('weapon_'), slots=slots,
+                            tints={} if fixed_palette else tints,
+                            animations={'idle': 'idle' + suffix, 'walk': 'walk' + suffix}))
+    return outfits
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-root',type=Path,required=True,help='Plunderground_4.4 checkout')
@@ -216,6 +251,7 @@ def main():
     helmet_mask=mask('helmet_mask',[(1,0,0),(1,1,1)])
     for helmet in HELMETS: parts.append(part('Helmet_'+helmet,'helmet',['helmet_primary','helmet_secondary'],helmet_mask))
     item_files=[]
+    part_styles={}
     # Same-named Hoardfall scenes are the explicitly imported/adapted versions.
     # Keep their transforms; add the rest of the original game's hand equipment.
     for category in ['1h-weapons','2h-weapons','bows','staves','shields']:
@@ -228,7 +264,21 @@ def main():
             source = stage_item(item,source_root)
             bone = 'Bone.hand_L.Attachment' if slot=='shield' else 'Bone.hand_R.Attachment'
             parts.append(part(slot+'_'+item.stem,slot,[],source=source,bone=bone))
+            if slot == 'weapon':
+                part_styles['weapon_' + item.stem.lower()] = {'1h-weapons':'1h', '2h-weapons':'2h', 'bows':'bow', 'staves':'staff'}[category]
             item_files.append({'repository':'Hoardfall' if source_root==args.hoardfall_root else 'Plunderground_4.4', 'path':str(item.relative_to(source_root)), 'sha256':hashlib.sha256(item.read_bytes()).hexdigest()})
+    # Hoardfall's shortbow is a scaled Longbow, distinct from the original
+    # Plunderground Shortbow mesh; keep both appearances instead of aliasing them.
+    hoardfall_shortbow = json.loads(json.dumps(next(p for p in parts if p['id']=='weapon_longbow')))
+    hoardfall_shortbow.update(id='weapon_hoardfall_shortbow', variant='weapon_hoardfall_shortbow', scale=[0.72,0.72,0.72])
+    parts.append(hoardfall_shortbow)
+    part_styles['weapon_hoardfall_shortbow']='bow'
+    ring_path=args.hoardfall_root/'assets/models/items/rings/Ring.tscn'
+    ring_source=stage_item(ring_path,args.hoardfall_root)
+    for side,slot,bone in [('right','artifact_1','Bone.hand_R.Attachment'),('left','artifact_2','Bone.hand_L.Attachment')]:
+        parts.append(part('ring_'+side,slot,[],source=ring_source,bone=bone))
+    item_files.append({'repository':'Hoardfall','path':str(ring_path.relative_to(args.hoardfall_root)),
+                       'sha256':hashlib.sha256(ring_path.read_bytes()).hexdigest()})
     if palette is not None:
         for definition in parts:
             definition['mask_texture']=''
@@ -255,8 +305,22 @@ def main():
     for style in ['2h','bow','staff']:
         styled=json.loads(json.dumps(config)); styled['asset_id']='human_male_'+style; styled['animations']=animations(style)
         write_json(ROOT/f'configs/human_male_{style}.json',styled)
-    write_json(DEST/'provenance.json',{'source':'Plunderground_4.4','original_sha256':hashlib.sha256(original.read_bytes()).hexdigest(),'items':item_files,'palette_mode':'fixed_endpoints' if palette else 'runtime_tints', 'adaptations':['normalize recolorable palette stripes','nearest palette filtering','strip gameplay callbacks from equipment'],'license':'No asset redistribution license found in inspected source asset directories. Local user-owned input; not committed or relicensed.'})
-    write_json(ROOT/'configs/human_male_catalog.json',{'skin_colors':SKINS,'cloth_colors':CLOTH,'hair_colors':HAIR,'bodies':BODIES,'helmets':HELMETS,'body_material_roles':ROLES,'helmet_material_roles':HELMET_ROLES,'parts':[p['id'] for p in parts], 'unsupported':[{'id':'artifact_ring','reason':'Source uses triplanar PBR, unsupported by reproducible Baker material passes; no substitute material applied.'}]})
+    complete=json.loads(json.dumps(config)); complete['asset_id']='human_male_complete'
+    complete['animations']=[]
+    for style in ['1h','2h','bow','staff']:
+        for animation in animations(style):
+            if style != '1h': animation['id'] += '_' + style
+            complete['animations'].append(animation)
+    write_json(ROOT/'configs/human_male_complete.json',complete)
+    all_outfits=complete_outfits(part_styles,palette is not None)
+    write_json(ROOT/'configs/human_male_outfits_all.json',{'outfits':all_outfits})
+    by_id={outfit['id']:outfit for outfit in all_outfits}
+    defaults=['falchion','flangedmace','claymore','longbow','quarterstaff','walkingstick']
+    showcase=['falchion','morningstar','battleaxe','claymore','longbow','hoardfall_shortbow','gemstonestaff','walkingstick']
+    write_json(ROOT/'configs/human_male_outfits_default.json',{'outfits':[by_id[name] for name in defaults]})
+    write_json(ROOT/'configs/human_male_outfits_showcase.json',{'outfits':[by_id[name] for name in showcase]})
+    write_json(DEST/'provenance.json',{'source':'Plunderground_4.4','original_sha256':hashlib.sha256(original.read_bytes()).hexdigest(),'items':item_files,'palette_mode':'fixed_endpoints' if palette else 'runtime_tints', 'appearance_definition':{'repository':'Hoardfall','path':'scripts/roguelike/starter_party.gd','sha256':hashlib.sha256((args.hoardfall_root/'scripts/roguelike/starter_party.gd').read_bytes()).hexdigest()}, 'adaptations':['normalize recolorable palette stripes','nearest palette filtering','strip gameplay callbacks from equipment','Hoardfall shortbow uses Longbow at model_scale 0.72','Hoardfall ring attaches independently to both hand artifact slots'],'license':'No asset redistribution license found in inspected source asset directories. Local user-owned input; not committed or relicensed.'})
+    write_json(ROOT/'configs/human_male_catalog.json',{'skin_colors':SKINS,'cloth_colors':CLOTH,'hair_colors':HAIR,'bodies':BODIES,'helmets':HELMETS,'body_material_roles':ROLES,'helmet_material_roles':HELMET_ROLES,'parts':[p['id'] for p in parts], 'weapon_animation_families':part_styles, 'unsupported':[], 'artifact_slots':{'artifact_1':'ring_right','artifact_2':'ring_left'}})
     print(f'Staged {len(parts)} modular parts; preview {len(preview["parts"])} parts, {len(outfits)} outfits')
 
 if __name__=='__main__': main()

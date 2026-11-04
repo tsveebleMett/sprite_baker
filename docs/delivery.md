@@ -62,3 +62,36 @@ godot --headless --path . --script scripts/reference_composites.gd -- \
 The Rust `--sprite-compose <new-directory>` command outputs CPU-composed frame-zero
 PNGs for all animations/directions. Compare them to the reference before interpreting
 GPU screenshot differences (window scaling, presentation background, text, etc.).
+
+## Complete equipment family
+
+The complete source recipe keeps all worn parts and all four animation families
+inside **one shared fitted camera/depth profile**. Do not combine separately fitted
+families merely because they contain the same skeleton.
+
+```sh
+godot --path . --script scripts/bake_human.gd -- res://configs/human_male_complete.json
+python3 scripts/deliver_export.py output/<completed-export> \
+  ../plunderground_rust/assets/sprites/human_male_complete \
+  --outfits configs/human_male_outfits_default.json \
+  --outfits-all configs/human_male_outfits_all.json \
+  --outfits-showcase configs/human_male_outfits_showcase.json \
+  --catalog configs/human_male_catalog.json \
+  --provenance assets/human_male/generated/provenance.json
+```
+
+All optional JSON sidecars are validated and included in `delivery.json` before
+atomic publication. Default presets serve the party; all-presets cover the source
+inventory; showcase presets exercise the four weapon/animation families.
+
+An outfit can map semantic actions to authored clips:
+
+```json
+"animations": {"idle": "idle_bow", "walk": "walk_bow"}
+```
+
+This selects the correct weapon pose; it does not change the exported atlas schema.
+The consumer prepares and plays the mapped clips, not the unrelated weapon poses.
+For reference comparisons, `scripts/reference_composites.gd` respects the same
+mapping and accepts an optional fourth argument `idle` or `walk`. Use separate
+output directories for the two actions; filenames remain `<outfit>-d<direction>.png`.
