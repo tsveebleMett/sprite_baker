@@ -1,4 +1,4 @@
-> **Project Overview Snapshot Date:** 2026-11-04
+> **Project Overview Snapshot Date:** 2026-11-05
 > **Audience:** AI coding agents — optimized for fast context loading before code tasks.
 > **Maintenance Policy:** This document is maintained by AI agents. If you notice
 > outdated information, update the relevant section and refresh the snapshot date.
@@ -215,6 +215,15 @@ its 43-part inventory and ring restriction predate current 46-part/triplanar cod
 - Keep `.godot/`, local tools, outputs and prepared original binaries untracked.
   Source provenance does not grant redistribution rights. Technical contracts are English;
   existing user-facing UI/README text includes German. No formatter is configured.
+
+## Original level adapter
+
+The optional `scripts/prepare_level.py`, `bake_level.gd`, `level_navigation.gd`
+and `pack_level.py` pipeline captures pinned original-master terrain v3 layouts,
+source PBR materials and animated torch particles. It exports a separate
+`level-manifest.json` contract; it does not change the creature schema. See
+[original level sprites](docs/level-sprites.md). Generated source dependencies in
+`assets/level_source/` stay ignored; source revision/hashes accompany delivery.
 
 ## Operational Gotchas
 
