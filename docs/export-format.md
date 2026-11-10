@@ -1,4 +1,4 @@
-# Sprite Baker export format, version 1
+# Sprite Baker export format, version 2 (v1 compatible readers)
 
 An export is a directory containing `manifest.json` and lossless RGBA8 PNG
 atlases. It has no dependency on Godot at consumption time. The reference
@@ -49,7 +49,7 @@ Do not apply color-space conversions or texture compression to mask/depth bytes.
 
 | Field | Meaning |
 | --- | --- |
-| `schema_version` | Integer `1`; reject unknown versions. |
+| `schema_version` | Integer `2` for trimmed frames; legacy `1` is supported. Reject unknown versions. |
 | `asset_id`, `asset_type` | Asset identity; type is `creature`, `item`, or `prop`. |
 | `profile` | Shared camera and raster profile, including its stable `id`. |
 | `depth` | Shared linear depth range and encoding described below. |
@@ -71,19 +71,45 @@ Each sheet has `part_id`, `animation_id`, `pages`, and `frames`. A page contains
 A frame contains:
 
 ```json
-{"frame": 0, "direction": 0, "page": 0, "rect": [0, 0, 512, 512]}
+{"frame": 0, "direction": 0, "page": 0,
+ "rect": [120, 48, 34, 76], "offset": [98, 124],
+ "source_size": [256, 256], "empty": false}
 ```
 
 `frame` indexes the animation's `times` array. Coordinates are integer pixels,
-with origin at the upper left. `rect` is `[x,y,width,height]` and is identical
-for all three channels. Every frame/direction pair occurs exactly once. Frames
-form columns, directions form rows; pages split columns and, when necessary,
-direction rows. Page dimensions never exceed 4096 × 4096. Consumers use explicit
-rectangles rather than assuming a fixed number of columns.
+with origin at the upper left. `rect` is `[atlas_x,atlas_y,width,height]` and is
+identical for color, mask and depth. Every frame/direction pair occurs once.
+There is no fixed cell layout in v2; consumers MUST use the explicit rectangles.
+
+- The Baker computes the **smallest union of nonzero-alpha coverage** across
+  all three channels. It crops all channels identically before native Godot
+  atlas packing. Hidden RGB outside zero alpha is not semantically retained.
+- `offset: [x,y]` places the cropped upper-left corner in the original, shared
+  export canvas. `source_size` must equal `profile.export_size`; it does NOT
+  indicate padded pixels stored in the PNG.
+- `original_pixel = offset + (atlas_pixel - rect.xy)`. Use this position for
+  depth comparison with other parts, BEFORE supersampling downsampling.
+- The shared model origin remains `profile.pivot`. The pivot relative to a
+  trimmed frame is `profile.pivot - offset` (it can lie outside the rectangle).
+- `empty: true` uses an all-zero 1×1 sentinel at offset `[0,0]`; skip it. No
+  visible geometry is invented. Nonempty frames have positive dimensions.
+- Pages are bounded by the configured maximum, at most 4096×4096, and channels
+  use identical placements. No rotation, resampling, color conversion, padding
+  inside frame rectangles or lossy compression occurs. Read data at exact
+  texels; do not bilinearly sample neighboring mask/depth frames.
+- Original page membership is preserved by the lossless v1 migration utility;
+  native packing minimizes placement within each page. Frame bounds are minimal,
+  but this is not a claim of globally optimal packing across every part/clip.
+
+Legacy **v1** frames contain only `frame`, `direction`, `page`, `rect`; their
+rectangles equal the full export canvas with implicit offset zero and no empty
+marker. Existing v1 readers cannot read v2 safely and must reject it. The Baker
+preview and Rust importer accept both. Saved bake configurations remain schema 1;
+configuration version and exported package version are different contracts.
 
 Times are finite, nonnegative and strictly increasing. A static pose has one
 time. Loop sampling omits the duplicated final pose. All combinable parts share
-the same profile, animation times and frame geometry; a profile change requires
+the same profile, animation times and original canvas geometry; a profile change requires
 rebaking the family. Parts from different profile revisions cannot be mixed.
 
 ## Coordinate and lighting conventions
@@ -101,7 +127,10 @@ images. Self-shadowing is allowed, but lighting, shadows, ambient occlusion and
 reflections from other exchangeable parts are excluded. Otherwise an individual
 part would contain a baked dependency on one equipment combination.
 
-Version 1 supports opaque geometry and alpha-cutout materials. It does not
+Both versions support opaque geometry and alpha-cutout materials. Opaque untinted
+StandardMaterial3D triplanar surfaces are supported: beauty preserves the source
+material, while mask/depth depend only on geometry. Triplanar cutouts, color
+regions and mask textures are rejected. It does not
 represent glass, layered translucency, or multiple depth samples at one pixel.
 Input equipment must fit its family rig; the baker does not retarget or resize
 incompatible armor automatically.

@@ -1,6 +1,6 @@
 # Sprite Baker
 
-Godot-Werkzeug für isometrische Sprite Sheets aus 3D-Modellen: animierte Kreaturen mit austauschbaren Teilen, statische Gegenstände und Umgebungsprops. Ausgabe sind **PNG-Sheets und ein engineunabhängiges JSON-Manifest**. Die eingebaute Paper-Doll-Vorschau liest ausschließlich diese Exportdateien.
+Godot-Werkzeug für isometrische Sprite Sheets aus 3D-Modellen: animierte Kreaturen mit austauschbaren Teilen, statische Gegenstände und Umgebungsprops. Ausgabe sind **zugeschnittene PNG-Atlanten und ein engineunabhängiges JSON-Manifest (v2)**. Jeder Frame erhält sein Atlas-Rechteck, den Offset im gemeinsamen Bildraum und die ursprüngliche Größe; Farbe, Maske und Tiefe bleiben deckungsgleich. Die eingebaute Paper-Doll-Vorschau liest ausschließlich diese Exportdateien.
 
 ## Starten
 
@@ -39,7 +39,7 @@ Im Tool **Modell wählen → Quelle untersuchen** verwenden. Die erkannten Meshe
 - Starre Ausrüstung erhält eine separate Quellszene und einen benannten Befestigungsknochen. Position, Rotation und Skalierung lassen sich pro Teil korrigieren.
 - Für Varianten denselben Slot verwenden, beispielsweise `head`; Teil-IDs müssen eindeutig sein. Die PNG-Vorschau wählt höchstens eine Variante je Slot.
 - Unterstützte Animationen bewegen Position, Rotation, Skalierung und Blend Shapes. Scripts, Physik, Material-/Visibility-Tracks und prozedurale Treiber gehören nicht zum Bake-Vertrag.
-- Unterstützt werden Standardmaterialien mit deckender oder ausgeschnittener Transparenz. Benutzerdefinierte Shader, Overlays, Triplanar-/Parallax-Mapping, Geometriewachstum und Fade-Effekte werden mit einer Fehlermeldung abgelehnt. Partikel, CSG, MultiMeshes und andere zusätzliche Renderquellen werden nicht still in Datenkanäle übernommen.
+- Unterstützt werden Standardmaterialien mit deckender oder ausgeschnittener Transparenz. Benutzerdefinierte Shader, Overlays, Parallax-Mapping, Geometriewachstum und Fade-Effekte werden mit einer Fehlermeldung abgelehnt. Deckende, nicht einfärbbare Triplanar-Materialien werden originalgetreu unterstützt; Triplanar mit Alpha-Ausschnitt oder Farbmaske nicht. Partikel, CSG, MultiMeshes und andere zusätzliche Renderquellen werden nicht still in Datenkanäle übernommen.
 - Ein Mesh kann nicht als separat isoliertes Teil unter einem anderen Mesh liegen. Solche Geometrie gemeinsam gruppieren oder unter reine Node3D-Container umordnen.
 
 ## Einfärbung und Verdeckung
@@ -60,7 +60,7 @@ Die vollständigen Datenfelder, Richtungs-/Pivot-Konventionen und Formeln stehen
 - `.partial-*`: abgebrochene oder fehlgeschlagene Ausgaben. Sie werden niemals als vollständige Exporte geöffnet und können nach Prüfung manuell entfernt werden.
 - Seiten sind maximal 4096 × 4096 Pixel groß. Lange Animationen werden automatisch über mehrere Seiten verteilt, ohne Frames zu zerschneiden.
 - Ein Auftrag ist auf 100.000 Teil-/Frame-/Richtungskombinationen begrenzt. Größere Aufträge in kleinere Exportgruppen teilen und jede zusammengehörige Gruppe gemeinsam einpassen.
-- Echte Teiltransparenz, Glas, automatische Kleidungsanpassung, Bodenschatten und Pixel-Art-Paletten gehören nicht zu Version 1. RGB24 bedeutet 24-Bit-Speicherung; die tatsächliche geometrische Genauigkeit ist zusätzlich durch GPU-Fließkommaarithmetik begrenzt.
+- Echte Teiltransparenz, Glas, automatische Kleidungsanpassung, Bodenschatten und Pixel-Art-Paletten gehören nicht zum Exportvertrag. RGB24 bedeutet 24-Bit-Speicherung; die tatsächliche geometrische Genauigkeit ist zusätzlich durch GPU-Fließkommaarithmetik begrenzt.
 
 ## Prüfen
 
@@ -84,3 +84,11 @@ Optionaler Test einer **echten Blender-Datei**, in einem separaten Hintergrundpr
 ```
 
 Die erzeugte Fixture liegt unter `tests/fixtures/generated/` und wird nicht versioniert. Der Test importiert sie über Godot, backt ihre Teile und rekonstruiert alle acht Richtungen aus den Exportdateien.
+
+## Plunderground-Menschen und Rust-Auslieferung
+
+Die originale modulare Menschenfamilie wird mit `scripts/prepare_human.py` aus
+lokalen Referenzprojekten vorbereitet. Siehe [Menschen-Pipeline](docs/human-male.md)
+für Quellen, Farbregionen, Ausrüstung und Bake-Aufrufe sowie
+[Auslieferung an plunderground_rust](docs/delivery.md) für unveränderte Bundles,
+Outfits und den engineübergreifenden Pixelvergleich.

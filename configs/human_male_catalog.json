@@ -1,0 +1,173 @@
+{
+  "skin_colors": [
+    "cf9b74",
+    "e6b99c",
+    "d2a181",
+    "f0c9a8",
+    "c38d70",
+    "e1ae8e"
+  ],
+  "cloth_colors": [
+    "247ad6",
+    "566f54",
+    "96494c",
+    "66527e",
+    "537b82",
+    "a67e42"
+  ],
+  "hair_colors": [
+    "5b4124",
+    "704a31",
+    "9b6b43",
+    "47352b",
+    "6b533b",
+    "554437",
+    "85513b"
+  ],
+  "bodies": [
+    "base",
+    "hideArmor",
+    "furArmor",
+    "lightArmor",
+    "leatherArmor",
+    "cuirBouilli",
+    "studdedLeather",
+    "robe",
+    "surcoat"
+  ],
+  "helmets": [
+    "Hood",
+    "Pelt",
+    "Cerveilliere",
+    "KettleHat"
+  ],
+  "body_material_roles": {
+    "base": [
+      "cloth"
+    ],
+    "hideArmor": [
+      "leather"
+    ],
+    "furArmor": [
+      "fur",
+      "fur"
+    ],
+    "lightArmor": [
+      "cloth",
+      "cloth"
+    ],
+    "leatherArmor": [
+      "leather",
+      "cloth"
+    ],
+    "cuirBouilli": [
+      "leather"
+    ],
+    "studdedLeather": [
+      "leather",
+      "metal"
+    ],
+    "robe": [
+      "cloth"
+    ],
+    "surcoat": [
+      "cloth",
+      "metal"
+    ]
+  },
+  "helmet_material_roles": {
+    "Hood": [
+      "cloth"
+    ],
+    "Pelt": [
+      "fur"
+    ],
+    "Cerveilliere": [
+      "metal",
+      "leather"
+    ],
+    "KettleHat": [
+      "metal",
+      "leather"
+    ]
+  },
+  "parts": [
+    "body_base",
+    "body_hidearmor",
+    "body_furarmor",
+    "body_lightarmor",
+    "body_leatherarmor",
+    "body_cuirbouilli",
+    "body_studdedleather",
+    "body_robe",
+    "body_surcoat",
+    "head_base",
+    "hair_short",
+    "beard_goatee",
+    "helmet_hood",
+    "helmet_pelt",
+    "helmet_cerveilliere",
+    "helmet_kettlehat",
+    "weapon_centefist",
+    "weapon_falchion",
+    "weapon_flangedmace",
+    "weapon_hammer",
+    "weapon_morningstar",
+    "weapon_shortsword",
+    "weapon_spikedclub",
+    "weapon_battleaxe",
+    "weapon_claymore",
+    "weapon_greatclub",
+    "weapon_maul",
+    "weapon_pickaxe",
+    "weapon_stoneaxe",
+    "weapon_flatbow",
+    "weapon_longbow",
+    "weapon_recurvebow",
+    "weapon_shortbow",
+    "weapon_warbow",
+    "weapon_gemstonestaff",
+    "weapon_metalstaff",
+    "weapon_quarterstaff",
+    "weapon_shortstaff",
+    "weapon_walkingstick",
+    "shield_kiteshield",
+    "shield_plankshield",
+    "shield_reinforcedshield",
+    "shield_roundshield",
+    "weapon_hoardfall_shortbow",
+    "ring_right",
+    "ring_left"
+  ],
+  "weapon_animation_families": {
+    "weapon_centefist": "1h",
+    "weapon_falchion": "1h",
+    "weapon_flangedmace": "1h",
+    "weapon_hammer": "1h",
+    "weapon_morningstar": "1h",
+    "weapon_shortsword": "1h",
+    "weapon_spikedclub": "1h",
+    "weapon_battleaxe": "2h",
+    "weapon_claymore": "2h",
+    "weapon_greatclub": "2h",
+    "weapon_maul": "2h",
+    "weapon_pickaxe": "2h",
+    "weapon_stoneaxe": "2h",
+    "weapon_flatbow": "bow",
+    "weapon_longbow": "bow",
+    "weapon_recurvebow": "bow",
+    "weapon_shortbow": "bow",
+    "weapon_warbow": "bow",
+    "weapon_gemstonestaff": "staff",
+    "weapon_metalstaff": "staff",
+    "weapon_quarterstaff": "staff",
+    "weapon_shortstaff": "staff",
+    "weapon_walkingstick": "staff",
+    "weapon_hoardfall_shortbow": "bow"
+  },
+  "unsupported": [],
+  "artifact_slots": {
+    "artifact_1": "ring_right",
+    "artifact_2": "ring_left"
+  }
+}

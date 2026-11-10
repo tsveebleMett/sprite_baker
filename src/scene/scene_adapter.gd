@@ -132,7 +132,7 @@ func _register_part(definition: Dictionary) -> bool:
 	for mesh in selected:
 		if not _validate_mesh_ancestors(mesh, selected, id):
 			return false
-		if not _validate_mesh(mesh, id):
+		if not _validate_mesh(mesh, id, definition):
 			return false
 		for existing in parts.values():
 			if existing.has(mesh):
@@ -161,7 +161,7 @@ func _register_offset(node: Node3D, definition: Dictionary) -> void:
 	_part_offsets[node] = {"original": node.transform, "definition": definition.duplicate(true)}
 	_apply_offset(node, definition)
 
-func _validate_mesh(mesh: MeshInstance3D, part_id: String) -> bool:
+func _validate_mesh(mesh: MeshInstance3D, part_id: String, definition: Dictionary = {}) -> bool:
 	if mesh.mesh == null:
 		error = "Part '%s' contains an empty mesh." % part_id
 		return false
@@ -174,8 +174,13 @@ func _validate_mesh(mesh: MeshInstance3D, part_id: String) -> bool:
 			error = "Custom ShaderMaterial is unsupported for reproducible data passes: " + part_id
 			return false
 		if material is BaseMaterial3D:
-			if material.uv1_triplanar or material.heightmap_enabled or material.proximity_fade_enabled or material.grow or material.distance_fade_mode != BaseMaterial3D.DISTANCE_FADE_DISABLED:
-				error = "Part '%s' uses unsupported triplanar, heightmap, grow or fade material features." % part_id
+			if material.heightmap_enabled or material.proximity_fade_enabled or material.grow or material.distance_fade_mode != BaseMaterial3D.DISTANCE_FADE_DISABLED:
+				error = "Part '%s' uses unsupported heightmap, grow or fade material features." % part_id
+				return false
+			# Opaque, untinted triplanar PBR is preserved by the beauty pass;
+			# depth and an empty mask depend only on geometry, not projected UVs.
+			if material.uv1_triplanar and (material.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED or not definition.get("regions", []).is_empty() or not definition.get("material_regions", {}).is_empty() or not str(definition.get("mask_texture", "")).is_empty()):
+				error = "Part '%s': triplanar materials require opaque, untinted parts without mask regions." % part_id
 				return false
 			if material.transparency not in [BaseMaterial3D.TRANSPARENCY_DISABLED, BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR]:
 				error = "Part '%s' uses blended transparency. Use opaque or alpha-scissor materials." % part_id

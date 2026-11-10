@@ -76,6 +76,7 @@ func run() -> void:
 	await test_source_isolation()
 	test_nested_mesh_parts()
 	test_source_constraints()
+	test_triplanar_material_boundary()
 	print("Scene tests: %d checks, %d failures" % [checks, failures])
 	quit(1 if failures else 0)
 
@@ -304,3 +305,20 @@ func test_nested_mesh_parts() -> void:
 	check(adapter.load_asset(selected), "whole nested mesh group is supported: " + adapter.error)
 	check(adapter.parts.body.size() == 2, "nested group includes parent and child geometry")
 	adapter.dispose()
+
+func test_triplanar_material_boundary() -> void:
+	var adapter = Adapter.new()
+	var mesh := MeshInstance3D.new()
+	mesh.mesh = BoxMesh.new()
+	var material := StandardMaterial3D.new()
+	material.uv1_triplanar = true
+	mesh.material_override = material
+	check(adapter._validate_mesh(mesh, "opaque", {}), "Opaque untinted triplanar geometry is supported")
+	for definition in [{"regions":["metal"]}, {"material_regions":{"0":0}}, {"mask_texture":"res://some-mask.png"}]:
+		check(not adapter._validate_mesh(mesh, "tinted", definition), "Triplanar tint and masks require projected sampling and are rejected")
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	check(not adapter._validate_mesh(mesh, "cutout", {}), "Triplanar cutout coverage remains unsupported")
+	material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+	material.heightmap_enabled = true
+	check(not adapter._validate_mesh(mesh, "height", {}), "Opaque triplanar does not enable unrelated displacement features")
+	mesh.free()
